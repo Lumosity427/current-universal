@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Apps - Universal</title>
+    <style>
+        /* Your existing CSS styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #00BFFF;
+            user-select: none;
+            overflow-y: auto;
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            margin-left: 20px;
+            max-width: 500px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00BFFF;
+            background-color: #222;
+            color: #00BFFF;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.2rem;
+        }
+
+        button {
+            background-color: #000;
+            color: #00BFFF;
+            border: 2px solid #00BFFF;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00BFFF;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        .section {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            color: #00BFFF;
+            border-bottom: 2px solid #00BFFF;
+            padding-bottom: 5px;
+            font-size: 2rem;
+        }
+
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+
+        .app {
+            position: relative;
+            width: 160px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .app img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            height: 90px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .app:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            z-index: 1;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-applogo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 20px;
+            color: #00BFFF;
+            border-top: 1px solid #00BFFF;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Apps</h1>
+        <div class="search-container">
+            <input type="text" id="search" oninput="filterApps()" placeholder="Search for apps...">
+        </div>
+        <button onclick="window.location.href='/'">Home</button>
+    </header>
+
+    <div class="tagline">“Discover the best apps for your needs.”</div>
+
+    <!-- Most Popular Section -->
+    <div class="section" id="most-popular">
+        <h2>Most Popular</h2>
+        <div class="apps-container">
+            <div class="app" onclick="openModal('notepad', 'bronomion', '2024')">
+                <img src="notepad.png" alt="Notepad">
+                <div class="app-title">Notepad</div>
+            </div>
+            <div class="app" onclick="openModal('calculator', 'Bronomion', '2024')">
+                <img src="calculator.png" alt="Calculator">
+                <div class="app-title">Calculator</div>
+            </div>
+            <div class="app" onclick="openModal('calendar', 'PlanIt', '2019')">
+                <img src="calendar.png" alt="Calendar">
+                <div class="app-title">Calendar</div>
+            </div>
+            <div class="app" onclick="openModal('todo', 'TaskMaster', '2020')">
+                <img src="todo.png" alt="To-Do List">
+                <div class="app-title">To-Do List</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="app-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <div class="modal-header">
+                <h1 class="modal-title" id="modal-title">App Title</h1>
+            </div>
+            <div class="app-info">
+                <p class="app-description" id="modal-description">App description goes here.</p>
+                <p id="modal-owner">Developer: <span id="owner-name">App Developer</span></p>
+                <p id="modal-release-date">Release Date: <span id="release-date">Release Date Info</span></p>
+            </div>
+            <button id="launch-button" onclick="launchApp()">Launch</button> <!-- Launch Button -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="credits">© 2025 Universal. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        function openModal(appId, owner, releaseDate) {
+            const modal = document.getElementById('app-modal');
+            const title = document.getElementById('modal-title');
+            const description = document.getElementById('modal-description');
+            const ownerName = document.getElementById('owner-name');
+            const releaseInfo = document.getElementById('release-date');
+
+            title.textContent = appId.charAt(0).toUpperCase() + appId.slice(1); // Capitalize the appId for a proper title
+            description.textContent = `Description: This is the ${appId} app`; // Placeholder description
+            ownerName.textContent = owner; // Set developer name
+            releaseInfo.textContent = releaseDate; // Set release date
+
+            modal.style.display = 'flex'; // Show the modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('app-modal');
+            modal.style.display = 'none'; // Hide the modal
+        }
+
+        function filterApps() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const appsContainer = document.querySelectorAll('.app');
+            appsContainer.forEach(app => {
+                const title = app.querySelector('.app-title').textContent.toLowerCase();
+                app.style.display = title.includes(searchInput) ? '' : 'none';
+            });
+        }
+
+        function launchApp() {
+            const modalTitle = document.getElementById('modal-title').textContent.toLowerCase();
+            const pathMap = {
+                'notepad': '/notepad',
+                'calculator': '/calculator',
+                'calendar': '/calendar',
+                'to-do list': '/todo'
+            };
+            const url = pathMap[modalTitle] || '/'; // Fallback to home if not found
+            window.location.href = url; // Redirect to the app URL
+        }
+    </script>
+
+    <script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+
+</html>
