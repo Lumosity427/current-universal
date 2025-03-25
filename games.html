@@ -160,7 +160,8 @@
         }
 
         .no-data {
-            color: #555; /* Grey color for no data message */
+            color: #555;
+            /* Grey color for no data message */
             font-style: italic;
             text-align: center;
             margin-top: 20px;
@@ -198,12 +199,24 @@
                 <div class="game-title">Flappy Bird</div>
             </div>
             <div class="game" onclick="playGame('retro-bowl')">
-                <img src="Retro_Bowl_cover.png" alt="Chrome Dino">
+                <img src="Retro_Bowl_cover.png" alt="Retro Bowl">
                 <div class="game-title">Retro Bowl</div>
             </div>
             <div class="game" onclick="playGame('sandbox')">
                 <img src="sandboxicon.png" alt="Sandbox">
                 <div class="game-title">Sandbox</div>
+            </div>
+            <div class="game" onclick="playGame('championarcher')">
+                <img src="championarchericon.png" alt="Champion Archer">
+                <div class="game-title">Champion Archer</div>
+            </div>
+            <div class="game" onclick="playGame('interactivebuddy')">
+                <img src="interactivebuddyicon.png" alt="Interactive Buddy">
+                <div class="game-title">Interactive Buddy</div>
+            </div>
+            <div class="game" onclick="playGame('slope')">
+                <img src="slopeicon.png" alt="Slope">
+                <div class="game-title">Slope</div>
             </div>
         </div>
     </div>
@@ -246,54 +259,57 @@
             { id: 'DogeMiner', title: 'Doge Miner', image: 'DogeMiningicon.png', description: 'Mine Dogecoins and manage your resources!', owner: 'rkn', genre: 'Clicker', releaseDate: '2014' },
             { id: '1', title: '1', image: '1iconthing.png', description: 'Similar to 2048, but opposite!', owner: '7bp', genre: 'Puzzle', releaseDate: '2020' },
             { id: 'among-us', title: 'Among Us', image: 'red842.png', description: 'Join your crewmates in a multiplayer game of teamwork and betrayal!', owner: 'Innersloth', genre: 'Social Deduction', releaseDate: '2018' },
-            { id: 'sandbox', title: 'Sandbox', image: 'sandboxicon.png', description: 'Create and explore your own worlds!', owner: '3kh0', genre: 'Sandbox', releaseDate: '2023' }
+            { id: 'sandbox', title: 'Sandbox', image: 'sandboxicon.png', description: 'Create and explore your own worlds!', owner: '3kh0', genre: 'Sandbox', releaseDate: '2023' },
+            { id: 'championarcher', title: 'Champion Archer', image: 'championarchericon.png', description: 'Become the ultimate archer in this thrilling game!', owner: 'Unknown', genre: 'Action', releaseDate: '2023' },
+            { id: 'interactivebuddy', title: 'Interactive Buddy', image: 'interactivebuddyicon.png', description: 'Your customizable buddy for fun and interaction!', owner: 'Unknown', genre: 'Simulation', releaseDate: '2008' },
+            { id: 'slope', title: 'Slope', image: 'slopeicon.png', description: 'Navigate your way down a slope while avoiding obstacles!', owner: 'Unknown', genre: 'Action', releaseDate: '2021' }
         ];
 
         let recentGames = JSON.parse(localStorage.getItem('recentGames')) || [];
 
         function playGame(gameId) {
-    // Add the game to recent played games
-    if (!recentGames.includes(gameId)) {
-        if (recentGames.length >= 4) {
-            recentGames.pop(); // Remove the oldest game if we already have 4
+            // Add the game to recent played games
+            if (!recentGames.includes(gameId)) {
+                if (recentGames.length >= 4) {
+                    recentGames.pop(); // Remove the oldest game if we already have 4
+                }
+                recentGames.unshift(gameId); // Add the new game to the front
+                localStorage.setItem('recentGames', JSON.stringify(recentGames));
+            }
+
+            window.location.href = `/${gameId}`;
         }
-        recentGames.unshift(gameId); // Add the new game to the front
-        localStorage.setItem('recentGames', JSON.stringify(recentGames));
-    }
 
-    window.location.href = `/${gameId}`;
-}
+        function recommendGames() {
+            const recommendedContainer = document.getElementById('recommendedContainer');
+            const noDataMessage = document.getElementById('no-data-message');
+            recommendedContainer.innerHTML = ''; // Clear previous recommendations
+            noDataMessage.style.display = 'none'; // Hide no data message initially
 
-function recommendGames() {
-    const recommendedContainer = document.getElementById('recommendedContainer');
-    const noDataMessage = document.getElementById('no-data-message');
-    recommendedContainer.innerHTML = ''; // Clear previous recommendations
-    noDataMessage.style.display = 'none'; // Hide no data message initially
+            if (recentGames.length === 0) {
+                // Show no data message if there are no recent games
+                noDataMessage.style.display = 'block';
+                return;
+            }
 
-    if (recentGames.length === 0) {
-        // Show no data message if there are no recent games
-        noDataMessage.style.display = 'block';
-        return;
-    }
+            // Recommend games based on the last 4 recently played games
+            const recommended = games.filter(game => recentGames.includes(game.id)).slice(0, 4); // Limit to 4
 
-    // Recommend games based on the last 4 recently played games
-    const recommended = games.filter(game => recentGames.includes(game.id)).slice(0, 4); // Limit to 4
-    
-    if (recommended.length === 0) {
-        noDataMessage.style.display = 'block';
-    } else {
-        recommended.forEach(game => {
-            const gameElement = document.createElement('div');
-            gameElement.className = 'game';
-            gameElement.onclick = () => playGame(game.id);
-            gameElement.innerHTML = `
-                <img src="${game.image}" alt="${game.title}">
-                <div class="game-title">${game.title}</div>
-            `;
-            recommendedContainer.appendChild(gameElement);
-        });
-    }
-}
+            if (recommended.length === 0) {
+                noDataMessage.style.display = 'block';
+            } else {
+                recommended.forEach(game => {
+                    const gameElement = document.createElement('div');
+                    gameElement.className = 'game';
+                    gameElement.onclick = () => playGame(game.id);
+                    gameElement.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}">
+                        <div class="game-title">${game.title}</div>
+                    `;
+                    recommendedContainer.appendChild(gameElement);
+                });
+            }
+        }
 
         function loadAllGames() {
             const allGamesContainer = document.getElementById('all-games-container');
