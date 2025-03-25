@@ -228,26 +228,28 @@
     </footer>
 
     <script>
-        const games = [
-            { id: 'cookieclicker', title: 'Cookie Clicker', image: 'cookie-clicker.png', description: 'A fun and addictive incremental game!', owner: 'Orteil', genre: 'Incremental', releaseDate: '2013' },
-            { id: '2048', title: '2048', image: '2048_logo.png', description: 'A simple and addictive sliding block puzzle game.', owner: 'Gabrielle Cirulli', genre: 'Puzzle', releaseDate: '2014' },
-            { id: 'flappybird', title: 'Flappy Bird', image: 'Flappy_Bird_icon.png', description: 'A classic game that tests your reflexes.', owner: 'Dong Nguyen', genre: 'Arcade', releaseDate: '2013' },
-            { id: 'chrome-dino', title: 'Chrome Dino', image: 'Social_dino_with_hat.gif', description: 'Play the dinosaur game when you\'re offline!', owner: 'Google', genre: 'Arcade', releaseDate: '2014' },
-            { id: 'penguino', title: 'Penguino', image: '3002414_nescartridges_penguino.png', description: 'Eat fish, survive, and don\'t get killed by orcas!', owner: '-RipeMangoes-', genre: 'Survival', releaseDate: '2020' },
-            { id: 'backrooms', title: 'Backrooms', image: 'backroomsgificon.gif', description: 'An eerie exploration game.', owner: 'IEP', genre: 'Horror', releaseDate: '2022' },
-            { id: 'retro-bowl', title: 'Retro Bowl', image: 'Retro_Bowl_cover.png', description: 'Experience the thrill of retro football!', owner: 'New Star Games', genre: 'Sports', releaseDate: '2019' },
-            { id: 'worlds-hardest-game', title: 'World\'s Hardest Game', image: 'HardestGameIcon.png', description: 'You will rage, you will cry.', owner: 'Snubby Land', genre: 'Puzzle', releaseDate: '2009' },
-            { id: 'worlds-hardest-game-2', title: 'World\'s Hardest Game 2', image: 'HardestGameIcon.png', description: 'Try to beat the levels and prove your skills.', owner: 'Snubby Land', genre: 'Puzzle', releaseDate: '2016' },
-            { id: 'you-are-bezos', title: 'You Are Bezos', image: 'JeffBezosYes.png', description: 'Live the life of a billionaire!', owner: 'Kris Lorischild', genre: 'Simulation', releaseDate: '2021' },
-            { id: 'just-one-boss', title: 'Just One Boss', image: 'bossicon.png', description: 'Battle through the levels to beat the boss!', owner: 'bridgs', genre: 'Action', releaseDate: '2022' },
-            { id: 'DogeMiner', title: 'Doge Miner', image: 'DogeMiningicon.png', description: 'Mine Dogecoins and manage your resources!', owner: 'rkn', genre: 'Clicker', releaseDate: '2014' },
-            { id: '1', title: '1', image: '1iconthing.png', description: 'Similar to 2048, but opposite!', owner: '7bp', genre: 'Puzzle', releaseDate: '2020' },
-            { id: 'among-us', title: 'Among Us', image: 'red842.png', description: 'Join your crewmates in a multiplayer game of teamwork and betrayal!', owner: 'Innersloth', genre: 'Social Deduction', releaseDate: '2018' },
-            { id: 'sandbox', title: 'Sandbox', image: 'sandboxicon.png', description: 'Create and explore your own worlds!', owner: '3kh0', genre: 'Sandbox', releaseDate: '2023' },
-            { id: 'championarcher', title: 'Champion Archer', image: 'championarcher.png', description: 'Become the ultimate archer in this thrilling game!', owner: 'Unknown', genre: 'Action', releaseDate: '2023' },
-            { id: 'interactivebuddy', title: 'Interactive Buddy', image: 'interactivebuddy.png', description: 'Your customizable buddy for fun and interaction!', owner: 'Unknown', genre: 'Simulation', releaseDate: '2008' },
-            { id: 'slope', title: 'Slope', image: 'slopeicon.png', description: 'Navigate your way down a slope while avoiding obstacles!', owner: 'Unknown', genre: 'Action', releaseDate: '2021' }
-        ];
+const games = [
+    { id: 'cookieclicker', title: 'Cookie Clicker', image: 'cookie-clicker.png', description: 'A fun and addictive incremental game!', owner: 'Orteil', genre: 'Incremental', releaseDate: '2013' },
+    { id: '2048', title: '2048', image: '2048_logo.png', description: 'A simple and addictive sliding block puzzle game.', owner: 'Gabrielle Cirulli', genre: 'Puzzle', releaseDate: '2014' },
+    { id: 'flappybird', title: 'Flappy Bird', image: 'Flappy_Bird_icon.png', description: 'A classic game that tests your reflexes.', owner: 'Dong Nguyen', genre: 'Arcade', releaseDate: '2013' },
+    { id: 'chrome-dino', title: 'Chrome Dino', image: 'Social_dino_with_hat.gif', description: 'Play the dinosaur game when you\'re offline!', owner: 'Google', genre: 'Arcade', releaseDate: '2014' },
+    { id: 'penguino', title: 'Penguino', image: '3002414_nescartridges_penguino.png', description: 'Eat fish, survive, and don\'t get killed by orcas!', owner: '-RipeMangoes-', genre: 'Survival', releaseDate: '2020' },
+    { id: 'backrooms', title: 'Backrooms', image: 'backroomsgificon.gif', description: 'An eerie exploration game.', owner: 'IEP', genre: 'Horror', releaseDate: '2022' },
+    { id: 'retro-bowl', title: 'Retro Bowl', image: 'Retro_Bowl_cover.png', description: 'Experience the thrill of retro football!', owner: 'New Star Games', genre: 'Sports', releaseDate: '2019' },
+    { id: 'worlds-hardest-game', title: 'World\'s Hardest Game', image: 'HardestGameIcon.png', description: 'You will rage, you will cry.', owner: 'Snubby Land', genre: 'Puzzle', releaseDate: '2009' },
+    { id: 'worlds-hardest-game-2', title: 'World\'s Hardest Game 2', image: 'HardestGameIcon.png', description: 'Try to beat the levels and prove your skills.', owner: 'Snubby Land', genre: 'Puzzle', releaseDate: '2016' },
+    { id: 'you-are-bezos', title: 'You Are Bezos', image: 'JeffBezosYes.png', description: 'Live the life of a billionaire!', owner: 'Kris Lorischild', genre: 'Simulation', releaseDate: '2021' },
+    { id: 'just-one-boss', title: 'Just One Boss', image: 'bossicon.png', description: 'Battle through the levels to beat the boss!', owner: 'bridgs', genre: 'Action', releaseDate: '2022' },
+    { id: 'DogeMiner', title: 'Doge Miner', image: 'DogeMiningicon.png', description: 'Mine Dogecoins and manage your resources!', owner: 'rkn', genre: 'Clicker', releaseDate: '2014' },
+    { id: '1', title: '1', image: '1iconthing.png', description: 'Similar to 2048, but opposite!', owner: '7bp', genre: 'Puzzle', releaseDate: '2020' },
+    { id: 'among-us', title: 'Among Us', image: 'red842.png', description: 'Join your crewmates in a multiplayer game of teamwork and betrayal!', owner: 'Innersloth', genre: 'Social Deduction', releaseDate: '2018' },
+    { id: 'sandbox', title: 'Sandbox', image: 'sandboxicon.png', description: 'Create and explore your own worlds!', owner: '3kh0', genre: 'Sandbox', releaseDate: '2023' },
+    { id: 'championarcher', title: 'Champion Archer', image: 'championarcher.png', description: 'Become the ultimate archer in this thrilling game!', owner: 'Unknown', genre: 'Action', releaseDate: '2023' },
+    { id: 'interactivebuddy', title: 'Interactive Buddy', image: 'interactivebuddy.png', description: 'Your customizable buddy for fun and interaction!', owner: 'Unknown', genre: 'Simulation', releaseDate: '2008' },
+    { id: 'slope', title: 'Slope', image: 'slopeicon.png', description: 'Navigate your way down a slope while avoiding obstacles!', owner: 'Unknown', genre: 'Action', releaseDate: '2021' },
+    { id: 'getaway-shootout', title: 'Getaway Shootout', image: 'getaway.jpg', description: 'A fast-paced game where you must escape from various situations!', owner: 'Unknown', genre: 'Action', releaseDate: '2023' },
+    { id: 'tunnel-rush', title: 'Tunnel Rush', image: 'tunnel.jpg', description: 'Navigate through a vibrant tunnel at lightning speeds!', owner: 'Unknown', genre: 'Action', releaseDate: '2023' }
+];
 
         let recentGames = JSON.parse(localStorage.getItem('recentGames')) || [];
 
